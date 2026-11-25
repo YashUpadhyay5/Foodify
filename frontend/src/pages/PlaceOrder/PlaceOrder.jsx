@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
 // ======================================================
 // COMPONENT START
 // ======================================================
-const PlaceOrder = () => {
+const PlaceOrder = ({ setShowLogin }) => {
 
   // --------------------------------------------------
   // GET DATA FROM STORE CONTEXT
@@ -177,7 +177,7 @@ Stripe checkout uses item.quantity for payment calculation
       window.location.replace(session_url);
 
     } else {
-      alert("Error");
+      alert(response.data.message || "Error");
     }
   };
 
@@ -200,8 +200,9 @@ Stripe checkout uses item.quantity for payment calculation
   // 2. Block access if cart is empty
   useEffect(() => {
 
-    // If user not logged in → go to cart
+    // If user not logged in → prompt login and go to cart
     if (!token) {
+      if (setShowLogin) setShowLogin(true);
       navigate('/cart');
     }
 

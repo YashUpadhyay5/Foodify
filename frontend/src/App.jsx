@@ -61,8 +61,8 @@ const App = () => {
       {/* Routes for different pages */}
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/order' element={<PlaceOrder/>}/>
+        <Route path='/cart' element={<Cart setShowLogin={setShowLogin}/>}/>
+        <Route path='/order' element={<PlaceOrder setShowLogin={setShowLogin}/>}/>
         <Route path='/verify' element={<Verify/>}/>
         <Route path='/myorders' element={<MyOrders/>}/>
       </Routes>

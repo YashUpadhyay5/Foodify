@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 // ========== CART COMPONENT ==========
 // Displays all items user added to cart with quantities and totals
 // Also shows cart summary and checkout button
-const Cart = () => {
+const Cart = ({ setShowLogin }) => {
 
   // ========== EXTRACT DATA FROM GLOBAL CONTEXT ==========
   // All data comes from StoreContext (centralized state management)
-  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url} = useContext(StoreContext);
+  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url,token} = useContext(StoreContext);
   // cartItems: Object with {itemId: quantity} → Which items user added and how many
   // food_list: Array of all available foods with details (name, price, image, etc)
   // removeFromCart: Function to decrease quantity when user clicks X
@@ -150,11 +150,15 @@ const Cart = () => {
           </div>
           
           {/* ========== CHECKOUT BUTTON ==========
-              Navigates to /order page for payment
-              onClick={() => navigate('/order')}
-              Uses useNavigate hook to programmatically go to order page
+              Navigates to /order page for payment (or opens login if unauthenticated)
           */}
-          <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={() => {
+            if (!token) {
+              if (setShowLogin) setShowLogin(true);
+            } else {
+              navigate('/order');
+            }
+          }}>PROCEED TO CHECKOUT</button>
         </div>
 
         {/* ========== PROMO CODE SECTION ==========

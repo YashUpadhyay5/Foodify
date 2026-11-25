@@ -116,7 +116,7 @@ const placeOrder = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.json({ success: false, message: error.message || "Error" });
     }
 };
 
@@ -160,7 +160,7 @@ const verifyOrder = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.json({ success: false, message: error.message || "Error" });
     }
 };
 
@@ -185,7 +185,7 @@ const userOrders = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.json({ success: false, message: error.message || "Error" });
     }
 };
 
@@ -207,7 +207,7 @@ const listOrders = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.json({ success: false, message: error.message || "Error" });
     }
 };
 
@@ -232,7 +232,7 @@ const updateStatus = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.json({ success: false, message: error.message || "Error" });
     }
 };
 
