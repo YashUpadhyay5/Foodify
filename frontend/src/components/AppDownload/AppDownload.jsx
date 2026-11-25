@@ -15,3 +15,32 @@ const AppDownload = () => {
 }
 
 export default AppDownload
+
+
+
+/*
+  PAGE FILE
+
+  - Represents a full screen / route of the application
+  - Connected with React Router
+  - Handles data fetching, state, and business logic
+  - Sends data to components using props
+  - Uses multiple reusable components
+  - Not meant to be reused like components
+  - use routing related hooks here (useNavigate, useParams, etc)
+  -use the routes in which elements and routs like /home , /cart are defined
+
+  Example: Home, Cart, Orders, Login
+*/
+/*
+  COMPONENT FILE
+
+  - Reusable UI building block
+  - Used inside pages
+  - Focuses mainly on UI / presentation
+  - Receives data from pages using props
+  - Does not handle routing
+  - Can be reused in multiple pages
+
+  Example: Navbar, FoodCard, Button, Footer
+*/

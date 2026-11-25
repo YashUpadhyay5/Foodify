@@ -20,3 +20,11 @@ const Home = () => {
 }
 
 export default Home
+
+
+// | Component needs  | Pass             |
+// | ---------------- | ---------------- |
+// | Only show data   | value            |
+// | Only change data | function         |
+// | Show + change    | value + function |
+// | Static UI        | nothing          |

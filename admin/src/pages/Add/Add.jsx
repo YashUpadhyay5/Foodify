@@ -55,7 +55,7 @@ const Add = ({url}) => {
             </div>
             <div className="add-product-name flex-col">
                 <p>Product name</p>
-                <input onChange={onChangeHandler} value={data.name} type="text" name='name' placeholder='Type here' />
+                <input onChange={onChangeHandler} value={data.name} type="text" name='name' placeholder='Type here' required />
             </div>
             <div className="add-product-description flex-col">
                 <p>Product description</p>
@@ -64,7 +64,7 @@ const Add = ({url}) => {
             <div className="add-category-price">
                 <div className="add-category flex-col">
                     <p>Product Category</p>
-                    <select onChange={onChangeHandler}  name="category">
+                    <select onChange={onChangeHandler} value={data.category} name="category">
                         <option value="Salad">Salad</option>
                         <option value="Rolls">Rolls</option>
                         <option value="Deserts">Deserts</option>
@@ -77,7 +77,7 @@ const Add = ({url}) => {
                 </div>
                 <div className="add-price flex-col">
                     <p>Product price</p>
-                    <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='$20' />
+                    <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='₹150' required />
                 </div>
             </div>
             <button type='submit' className='add-btn'>ADD</button>

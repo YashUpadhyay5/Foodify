@@ -12,3 +12,27 @@ orderRouter.get("/list",listOrders)
 orderRouter.post("/status",updateStatus)
 
 export default orderRouter;
+
+
+
+
+
+// Page Load
+//    ↓
+// useEffect() → token & cart check
+//    ↓
+// User fills form
+//    ↓
+// onChangeHandler → updates state
+//    ↓
+// User clicks button
+//    ↓
+// placeOrder()
+//    ↓
+// Create orderData
+//    ↓
+// POST → backend
+//    ↓
+// Stripe session URL
+//    ↓
+// Redirect to Stripe
