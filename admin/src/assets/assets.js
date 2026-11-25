@@ -14,4 +14,4 @@ export const assets ={
     parcel_icon
 }
 
-export const url = 'https://cravio-backend-gkqq.onrender.com'
+export const url = import.meta.env.VITE_API_URL || 'https://foodify-backend-gf60.onrender.com'

@@ -31,7 +31,7 @@ const placeOrder = async (req, res) => {
 
     // This is the frontend URL where Stripe will redirect the user
     // after payment success or cancellation
-    const frontend_url = process.env.FRONTEND_URL || "https://cravio-frontend-xk1f.onrender.com";
+    const frontend_url = process.env.FRONTEND_URL || "https://foodify-frontend-4h4v.onrender.com";
 
     try {
         // --------------------------------------------------

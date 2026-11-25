@@ -29,14 +29,14 @@ const StoreContextProvider = (props) => {
     // Set in .env file: VITE_API_URL="http://localhost:4000"
     // import.meta.env.VITE_API_URL reads this variable at build time
     // If variable is not set, fallback to production URL
-    const url = import.meta.env.VITE_API_URL || "https://cravio-backend-gkqq.onrender.com";
+    const url = import.meta.env.VITE_API_URL || "https://foodify-backend-gf60.onrender.com";
 
     // ---------------- EXAMPLES / ALTERNATIVES ----------------
     // Hardcode local backend (for local dev testing only)
     // const url = "http://localhost:4000";
 
     // Hardcode production backend (if you want to ignore environment variable)
-    // const url = "https://cravio-backend.onrender.com";
+    // const url = "https://foodify-backend-gf60.onrender.com";
 
     // ---------------- DEBUGGING ----------------
     // Console log to confirm which backend the frontend will call
