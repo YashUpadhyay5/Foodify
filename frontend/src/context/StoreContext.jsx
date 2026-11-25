@@ -132,12 +132,30 @@ addToCart(req, res)                       // Cart controller
         }
     };
 
-    // Load cart data from backend for logged-in user  when refersh the page update cart from the backend render on the page
+    // Load cart data from backend for logged-in user with guest-cart preservation
     const loadCartData = async (token) => {
         try {
             const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
             if (response.data && response.data.cartData) {
-                setCartItems(response.data.cartData);
+                const backendCart = response.data.cartData;
+                setCartItems(prev => {
+                    // Check if user had added any items before logging in
+                    const hasLocalItems = prev && Object.values(prev).some(qty => qty > 0);
+                    if (hasLocalItems) {
+                        const merged = { ...backendCart };
+                        // Merge local items and sync each added item to backend
+                        for (const itemId in prev) {
+                            if (prev[itemId] > 0) {
+                                merged[itemId] = (merged[itemId] || 0) + prev[itemId];
+                                for (let i = 0; i < prev[itemId]; i++) {
+                                    axios.post(url + "/api/cart/add", { itemId }, { headers: { token } }).catch(() => {});
+                                }
+                            }
+                        }
+                        return merged;
+                    }
+                    return backendCart;
+                });
             }
         } catch (err) {
             console.error("Failed to load cart data:", err);

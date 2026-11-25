@@ -40,6 +40,19 @@ const Cart = ({ setShowLogin }) => {
         <br />
         <hr />
 
+        {/* ========== EMPTY CART NOTICE ========== */}
+        {getTotalCartAmount() === 0 && (
+          <div style={{ textAlign: "center", padding: "30px 0" }}>
+            <p style={{ fontSize: "18px", color: "#676767", marginBottom: "15px" }}>Your cart is currently empty.</p>
+            <button 
+              onClick={() => navigate('/')} 
+              style={{ background: "#ff6347", color: "white", padding: "10px 24px", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "14px", fontWeight: "500" }}
+            >
+              Browse Delicious Dishes
+            </button>
+          </div>
+        )}
+
         {/* ========== LOOP THROUGH ALL FOODS ==========
             food_list.map() creates row for each food item
             But ONLY shows foods that user added (quantity > 0)
@@ -150,15 +163,29 @@ const Cart = ({ setShowLogin }) => {
           </div>
           
           {/* ========== CHECKOUT BUTTON ==========
-              Navigates to /order page for payment (or opens login if unauthenticated)
+              Navigates to /order page for payment (or prompts if empty/unauthenticated)
           */}
-          <button onClick={() => {
-            if (!token) {
-              if (setShowLogin) setShowLogin(true);
-            } else {
-              navigate('/order');
-            }
-          }}>PROCEED TO CHECKOUT</button>
+          <button 
+            disabled={getTotalCartAmount() === 0}
+            style={{
+              opacity: getTotalCartAmount() === 0 ? 0.6 : 1,
+              cursor: getTotalCartAmount() === 0 ? "not-allowed" : "pointer"
+            }}
+            onClick={() => {
+              if (getTotalCartAmount() === 0) {
+                alert("Your cart is empty! Please add some dishes to your cart first.");
+                navigate('/');
+                return;
+              }
+              if (!token) {
+                if (setShowLogin) setShowLogin(true);
+              } else {
+                navigate('/order');
+              }
+            }}
+          >
+            PROCEED TO CHECKOUT
+          </button>
         </div>
 
         {/* ========== PROMO CODE SECTION ==========
